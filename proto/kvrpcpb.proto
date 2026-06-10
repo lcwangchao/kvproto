@@ -940,6 +940,11 @@ message ResourceControlContext {
     // This priority would override the original priority of the resource group for the request.
     // Used to deprioritize the runaway queries. 
     uint64 override_priority = 3;
+
+    // QoS group used by TiKV read-pool fair scheduling. This field only takes
+    // effect for requests in the default resource group. Smaller group id means
+    // higher scheduling priority under read-side contention.
+    uint32 qos_group = 4;
 }
 
 // The API version the server and the client is using.
